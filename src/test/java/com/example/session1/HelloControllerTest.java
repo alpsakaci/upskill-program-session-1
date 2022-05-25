@@ -45,7 +45,7 @@ class HelloControllerTest {
     }
 
     @Test
-    void sayHello_NameParamGivenWithMoreThanOneNames_ReturnGreetingMessage() throws Exception {
+    void sayHello_NameParamGivenWithTwoNames_ReturnGreetingMessage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/hello/Annie,Bart")
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("utf-8"))
@@ -54,11 +54,30 @@ class HelloControllerTest {
     }
 
     @Test
-    void sayHello_NameParamGivenWithMoreThanOneNamesAndAllLettersUppercase_ReturnGreetingMessage() throws Exception {
+    void sayHello_NameParamGivenWithTwoNamesAndAllLettersUppercase_ReturnGreetingMessage() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/hello/ANNIE,BART")
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("utf-8"))
                 .andExpect(content().string("HELLO, ANNIE AND BART!"))
                 .andReturn();
     }
+
+    @Test
+    void sayHello_NameParamGivenWithMoreThanTwoNames_ReturnGreetingMessage() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/hello/Anne,Bart,Charles,Monique")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .characterEncoding("utf-8"))
+                .andExpect(content().string("Hello, Anne, Bart, Charles, and Monique."))
+                .andReturn();
+    }
+
+    @Test
+    void sayHello_NameParamGivenWithMoreThanTwoNamesAndAllLettersUppercase_ReturnGreetingMessage() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/hello/ANNE,BART,CHARLES,MONIQUE")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .characterEncoding("utf-8"))
+                .andExpect(content().string("HELLO, ANNE, BART, CHARLES, AND MONIQUE!"))
+                .andReturn();
+    }
+
 }
