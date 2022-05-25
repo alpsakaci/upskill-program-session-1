@@ -10,7 +10,7 @@ public class HelloController {
 
     @GetMapping("/hello")
     public String sayHello() {
-        return "Hello World";
+        return "Hello world.";
     }
 
     @GetMapping("/hello/{name}")
@@ -22,9 +22,9 @@ public class HelloController {
         }
 
         if (name.equals(name.toUpperCase())) {
-            return "HELLO, " + name;
+            return "HELLO, " + name +"!";
         }
 
-        return "Hello, " + name;
+        return "Hello, " + name + ".";
     }
 }
