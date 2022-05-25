@@ -16,6 +16,12 @@ public class HelloController {
     @GetMapping("/hello/{name}")
     public String sayHello(@PathVariable(value = "name") String name) {
         if (name.equals(name.toUpperCase())) {
+            name = name.replaceAll(",", " AND ");
+        } else {
+            name = name.replaceAll(",", " and ");
+        }
+
+        if (name.equals(name.toUpperCase())) {
             return "HELLO, " + name;
         }
 
