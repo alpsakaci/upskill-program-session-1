@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
 
     @GetMapping("/hello")
-    public String helloWorld() {
+    public String sayHello() {
         return "Hello World";
     }
 
     @GetMapping("/hello/{name}")
-    public String sayHelo(@PathVariable(value = "name") String name) {
+    public String sayHello(@PathVariable(value = "name") String name) {
         if (name.equals(name.toUpperCase())) {
             return "HELLO, " + name;
         }
