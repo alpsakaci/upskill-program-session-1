@@ -1,9 +1,11 @@
 package com.example.session1;
 
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringCalculatorTest {
 
@@ -22,4 +24,39 @@ public class StringCalculatorTest {
         assertEquals(expected, result);
     }
 
+    @Test
+    void shouldReturnSumOfNumbersWithNewLine() {
+        Integer result = new StringCalculator().add("1\n2,3");
+        assertEquals(6, result);
+    }
+
+    @Test
+    void shouldReturnSumOfNumbersWithCustomSeparator() {
+        Integer result = new StringCalculator().add("//;\n1;2");
+        assertEquals(3, result);
+    }
+
+    @Test
+    void shouldThrowExceptionSumOfNumbersWithOneNegativeNumber() {
+        RuntimeException thrown = assertThrows(RuntimeException.class,
+                () -> new StringCalculator().add("-1")
+        );
+        assertEquals("error: negatives not allowed: [-1]" , thrown.getMessage());
+    }
+
+    @Test
+    void shouldThrowExceptionSumOfNumbersWithMultipleNegativeNumbers() {
+        RuntimeException thrown = assertThrows(RuntimeException.class,
+                () -> new StringCalculator().add("-1,-2,-3")
+        );
+        assertEquals("error: negatives not allowed: [-1, -2, -3]" , thrown.getMessage());
+    }
+
+    @Test
+    void shouldThrowExceptionSumOfNumbersWithBothPositiveAndNegativeNumbers() {
+        RuntimeException thrown = assertThrows(RuntimeException.class,
+                () -> new StringCalculator().add("1,-2,-3")
+        );
+        assertEquals("error: negatives not allowed: [-2, -3]" , thrown.getMessage());
+    }
 }
