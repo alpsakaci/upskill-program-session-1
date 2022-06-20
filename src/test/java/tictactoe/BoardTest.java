@@ -9,12 +9,12 @@ public class BoardTest {
 
     @Test
     void initialize_ReturnEmptyBoardArray() {
-        assertArrayEquals(new String[3][3], new Board().getBoard());
+        assertArrayEquals(new String[3][3], new FirstBoard().getBoard());
     }
 
     @Test
     void move_GivenPositionAndPlayer_PlaceSignInGivenPosition() {
-        Board board = new Board();
+        FirstBoard board = new FirstBoard();
         board.move(new Position(1, 2), "X");
         assertEquals("X", board.getBoard()[1][2]);
     }
