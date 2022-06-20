@@ -29,4 +29,13 @@ class TicTacToeV2Test {
                 () -> ticTacToeV2.play(-1,1), "position is invalid");
     }
 
+    @Test
+    void shouldSignNotDuplicateAtSamePlace(){
+        ticTacToeV2.play(1,1);
+
+        assertThrows(InvalidPositionException.class,
+            () -> ticTacToeV2.play(1,1), "position is fulled");
+    }
+
+
 }

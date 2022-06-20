@@ -4,6 +4,7 @@ public class TicTacToeV2 {
     private Board board;
     private Player player1;
     private Player player2;
+    private Player turn = player1;
 
     public TicTacToeV2() {
         this.board = new Board();
@@ -12,6 +13,15 @@ public class TicTacToeV2 {
     }
 
     public void play(int x, int y) {
-        board.signCell(x, y, "X");
+        board.signCell(x, y, turn.sign);
+        changeTurn();
+    }
+
+    public void changeTurn(){
+        if( turn == player1){
+            turn = player2;
+            return;
+        }
+        turn = player1;
     }
 }
