@@ -16,42 +16,42 @@ public class Game_Should {
 
     @Test
     public void NotAllowPlayerOToPlayFirst() {
-        assertThrows(Exception.class, () -> game.Play('O', 0, 0));
+        assertThrows(Exception.class, () -> game.Play(new Tile('O', 0, 0)));
     }
 
     @Test
     public void NotAllowPlayerXToPlayTwiceInARow() {
         assertThrows(Exception.class, () ->{
-            game.Play('X', 0, 0);
-            game.Play('X', 1, 0);
+            game.Play(new Tile('X', 0, 0));
+            game.Play(new Tile('X', 1, 0));
         });
     }
 
     @Test
     public void NotAllowPlayerToPlayInLastPlayedPosition() {
         assertThrows(Exception.class, () ->{
-            game.Play('X', 0, 0);
-            game.Play('O', 0, 0);
+            game.Play(new Tile('X', 0, 0));
+            game.Play(new Tile('O', 0, 0));
         });
     }
 
     @Test
     public void NotAllowPlayerToPlayInAnyPlayedPosition() {
         assertThrows(Exception.class, () ->{
-            game.Play('X', 0, 0);
-            game.Play('O', 1, 0);
-            game.Play('X', 0, 0);
+            game.Play(new Tile('X', 0, 0));
+            game.Play(new Tile('O', 1, 0));
+            game.Play(new Tile('X', 0, 0));
         });
     }
 
     @Test
     public void DeclarePlayerXAsAWinnerIfThreeInTopRow() throws Exception
     {
-        game.Play('X', 0, 0);
-        game.Play('O', 1, 0);
-        game.Play('X', 0, 1);
-        game.Play('O', 1, 1);
-        game.Play('X', 0, 2);
+        game.Play(new Tile('X', 0, 0));
+        game.Play(new Tile('O', 1, 0));
+        game.Play(new Tile('X', 0, 1));
+        game.Play(new Tile('O', 1, 1));
+        game.Play(new Tile('X', 0, 2));
 
         char winner = game.Winner();
 
@@ -61,12 +61,12 @@ public class Game_Should {
     @Test
     public void DeclarePlayerOAsAWinnerIfThreeInTopRow() throws Exception
     {
-        game.Play('X', 2, 2);
-        game.Play('O', 0, 0);
-        game.Play('X', 1, 0);
-        game.Play('O', 0, 1);
-        game.Play('X', 1, 1);
-        game.Play('O', 0, 2);
+        game.Play(new Tile('X', 2, 2));
+        game.Play(new Tile('O', 0, 0));
+        game.Play(new Tile('X', 1, 0));
+        game.Play(new Tile('O', 0, 1));
+        game.Play(new Tile('X', 1, 1));
+        game.Play(new Tile('O', 0, 2));
 
         char winner = game.Winner();
 
@@ -76,11 +76,11 @@ public class Game_Should {
     @Test
     public void DeclarePlayerXAsAWinnerIfThreeInMiddleRow() throws Exception
     {
-        game.Play('X', 1, 0);
-        game.Play('O', 0, 0);
-        game.Play('X', 1, 1);
-        game.Play('O', 0, 1);
-        game.Play('X', 1, 2);
+        game.Play(new Tile('X', 1, 0));
+        game.Play(new Tile('O', 0, 0));
+        game.Play(new Tile('X', 1, 1));
+        game.Play(new Tile('O', 0, 1));
+        game.Play(new Tile('X', 1, 2));
 
         char winner = game.Winner();
 
@@ -90,12 +90,12 @@ public class Game_Should {
     @Test
     public void DeclarePlayerOAsAWinnerIfThreeInMiddleRow() throws Exception
     {
-        game.Play('X', 0, 0);
-        game.Play('O', 1, 0);
-        game.Play('X', 2, 0);
-        game.Play('O', 1, 1);
-        game.Play('X', 2, 1);
-        game.Play('O', 1, 2);
+        game.Play(new Tile('X', 0, 0));
+        game.Play(new Tile('O', 1, 0));
+        game.Play(new Tile('X', 2, 0));
+        game.Play(new Tile('O', 1, 1));
+        game.Play(new Tile('X', 2, 1));
+        game.Play(new Tile('O', 1, 2));
 
         char winner = game.Winner();
 
@@ -105,11 +105,11 @@ public class Game_Should {
     @Test
     public void DeclarePlayerXAsAWinnerIfThreeInBottomRow() throws Exception
     {
-        game.Play('X', 2, 0);
-        game.Play('O', 0, 0);
-        game.Play('X', 2, 1);
-        game.Play('O', 0, 1);
-        game.Play('X', 2, 2);
+        game.Play(new Tile('X', 2, 0));
+        game.Play(new Tile('O', 0, 0));
+        game.Play(new Tile('X', 2, 1));
+        game.Play(new Tile('O', 0, 1));
+        game.Play(new Tile('X', 2, 2));
 
         char winner = game.Winner();
 
@@ -119,12 +119,12 @@ public class Game_Should {
     @Test
     public void DeclarePlayerOAsAWinnerIfThreeInBottomRow() throws Exception
     {
-        game.Play('X', 0, 0);
-        game.Play('O', 2, 0);
-        game.Play('X', 1, 0);
-        game.Play('O', 2, 1);
-        game.Play('X', 1, 1);
-        game.Play('O', 2, 2);
+        game.Play(new Tile('X', 0, 0));
+        game.Play(new Tile('O', 2, 0));
+        game.Play(new Tile('X', 1, 0));
+        game.Play(new Tile('O', 2, 1));
+        game.Play(new Tile('X', 1, 1));
+        game.Play(new Tile('O', 2, 2));
 
         char winner = game.Winner();
 
